@@ -1,1 +1,0 @@
-pm2 stop ecosystem.config.js && pm2 reload ecosystem.config.js
