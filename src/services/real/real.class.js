@@ -24,32 +24,30 @@ exports.Real = class Real {
       return Promise.all(data.map((current) => this.create(current, params)));
     }
     // parse
-    let dataJson;
-    try {
-      dataJson = JSON.parse(data);
-    } catch (error) {
-      log({
-        level: "warn",
-        code: "parse",
-        call: "services.real.class.create",
-        messsage: error.messsage,
-        save: false,
-      });
-      return JSON.stringify({ data: "json.parse", seq: dataJson.seq || 0 });
-    }
-    if (!dataJson.id)
-      return JSON.stringify({ data: "no.id", seq: dataJson.seq || 0 });
+    // try {
+    //   data = JSON.parse(data);
+    // } catch (error) {
+    //   log({
+    //     level: "warn",
+    //     code: "parse",
+    //     call: "services.real.class.create",
+    //     messsage: error.messsage,
+    //     save: false,
+    //   });
+    //   return JSON.stringify({ data: "json.parse", seq: data.seq || 0 });
+    // }
+    if (!data.id) return JSON.stringify({ data: "no.id", seq: data.seq || 0 });
 
-    const datas = string.split(dataJson.data, ";");
+    const datas = string.split(data.data, ";");
     if (!datas[0])
-      return JSON.stringify({ data: "no.data", seq: dataJson.seq || 0 });
+      return JSON.stringify({ data: "no.data", seq: data.seq || 0 });
 
     let dataSave = [];
     collection.forEach(datas, async (value) => {
       const parameters = string.split(value, ",");
       if (parameters[0] == "$PB") {
         dataSave.push({
-          id: dataJson.id,
+          id: data.id,
           time: new Date(Number.parseInt(parameters[1])),
           lon: Number.parseFloat(parameters[2]),
           lat: Number.parseFloat(parameters[3]),
@@ -60,7 +58,7 @@ exports.Real = class Real {
         });
       } else if (parameters[0] == "$PE") {
         dataSave.push({
-          id: dataJson.id,
+          id: data.id,
           time: new Date(Number.parseInt(parameters[1])),
           lon: Number.parseFloat(parameters[2]),
           lat: Number.parseFloat(parameters[3]),
@@ -85,9 +83,9 @@ exports.Real = class Real {
         messsage: error.messsage,
         save: false,
       });
-      return JSON.stringify({ data: "mariadb", seq: dataJson.seq || 0 });
+      return JSON.stringify({ data: "mariadb", seq: data.seq || 0 });
     }
-    return JSON.stringify({ data: "success", seq: dataJson.seq || 0 });
+    return JSON.stringify({ data: "success", seq: data.seq || 0 });
   }
 
   async update(id, data, params) {

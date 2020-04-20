@@ -20,12 +20,12 @@ exports.LogSystem = class LogSystem {
     if (Array.isArray(data)) {
       return Promise.all(data.map((current) => this.create(current, params)));
     }
+    console.log(data);
     log({
       level: "warn",
-      code: "system",
+      code: "device.system",
       call: "services.log-system.class.create",
-      messsage: data,
-      save: false,
+      message: data,
     });
     return "OK";
   }

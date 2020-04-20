@@ -1,11 +1,13 @@
 
 
+const logSystem = require('../../hooks/log-system');
+
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [logSystem()],
     update: [],
     patch: [],
     remove: []
