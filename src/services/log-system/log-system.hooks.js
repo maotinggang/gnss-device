@@ -1,16 +1,12 @@
-
-
-const logSystem = require('../../hooks/log-system');
-
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [logSystem()],
+    create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   after: {
@@ -20,7 +16,7 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -30,6 +26,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };
