@@ -39,7 +39,7 @@
     "fast-json-stable-stringify": "^2.1.0",
     "feathers-knex": "^6.0.2",
     "helmet": "^3.20.0",
-    "knex": "^0.20.13",
+    "knex": "^2.4.0",
     "lodash": "^4.17.15",
     "mysql2": "^2.1.0",
     "serve-favicon": "^2.5.0",
